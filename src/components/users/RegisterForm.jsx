@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import requester from '../../infrastructure/requester';
 import observer from '../../infrastructure/observer';
+import FormErrors from '../../components/common/FormErrors';
 
 const DEFAULT_STATE = {
     username: '',
     password: '',
-    repeatPass: ''
+    repeatPass: '',
+    formErrors: {
+        username: '',
+        password: '',
+        repeatPass: ''
+    },
+    formValid: false
 };
 
 export default class RegisterForm extends Component {
@@ -14,11 +21,41 @@ export default class RegisterForm extends Component {
         this.state = DEFAULT_STATE;
     }
 
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors;
+
+        switch(fieldName) {
+            case 'username':
+                fieldValidationErrors.username = value.length >= 4 ? '' : ' is less than 4 characters';
+                break;
+            case 'password':
+                fieldValidationErrors.password = value.length >= 4 ? '': ' is less than 4 characters';
+                break;
+            case 'repeatPass':
+                fieldValidationErrors.repeatPass = value.length >= 4 ? '': ' is less than 4 characters. ';
+                fieldValidationErrors.repeatPass += value === this.state.password ? '': ' is not equal to password field';
+                break;
+            default:
+                break;
+        }
+        this.setState({formErrors: fieldValidationErrors}, this.validateForm);
+    }
+
+    validateForm() {
+        this.setState({
+            formValid: 
+                this.state.formErrors.username.length === 0 &&
+                this.state.formErrors.password.length === 0 &&
+                this.state.formErrors.repeatPass.length === 0 &&
+                this.state.formErrors.password === this.state.formErrors.repeatPass
+                ? true : false});
+    }
+
     handleChange = ev => {
         let fieldName = ev.target.name;
         let fieldValue = ev.target.value;
 
-        this.setState({[fieldName]: fieldValue});
+        this.setState({[fieldName]: fieldValue}, () => { this.validateField(fieldName, fieldValue) });
     }
 
     handleSubmit = ev => {
@@ -44,6 +81,9 @@ export default class RegisterForm extends Component {
         return (
             <form id="registerForm" onSubmit={this.handleSubmit}>
                 <h2>Register</h2>
+                <div className="panel panel-default alert-danger error-container">
+                    <FormErrors formErrors={this.state.formErrors} />
+                </div>
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input name="username" type="text" className="form-control" id="username" onChange={this.handleChange}  value={this.state.username} />
@@ -56,7 +96,7 @@ export default class RegisterForm extends Component {
                     <label htmlFor="repeatPass">Repeat Password:</label>
                     <input name="repeatPass" type="password" className="form-control" id="repeatPass" onChange={this.handleChange} value={this.state.repeatPass} />
                 </div>
-                <input id="btnRegister" value="Sign Up" className="btn btn-primary" type="submit"/>
+                <input disabled={!this.state.formValid} id="btnRegister" value="Sign Up" className="btn btn-primary" type="submit"/>
             </form>
             
         )

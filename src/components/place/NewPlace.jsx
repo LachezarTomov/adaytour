@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import requester from '../../infrastructure/requester';
 import observer from '../../infrastructure/observer';
+import FormErrors from '../../components/common/FormErrors';
 
 const DEFAULT_STATE = {
     title: '',
@@ -12,7 +13,15 @@ const DEFAULT_STATE = {
         lon: 0,
         lat: 0
     },
-    operationType: ''
+    operationType: '',
+    formErrors: {
+        title: '',
+        description: '',
+        longDesctiption: '',
+        imageUrl: '',
+        author: ''
+    },
+    formValid: false
 };
 
 export default class NewPlace extends Component {
@@ -29,11 +38,46 @@ export default class NewPlace extends Component {
         }
     }
 
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors;
+
+        switch(fieldName) {
+            case 'title':
+                fieldValidationErrors.title = value.length >= 6 ? '' : ' is less than 6 characters';
+                break;
+            case 'description':
+                fieldValidationErrors.description = value.length >= 10 ? '': ' is less than 10 characters';
+                break;
+            case 'longDesctiption':
+                fieldValidationErrors.longDesctiption = value.length >= 30 ? '': ' is less than 30 characters';
+                break;
+            case 'imageUrl':
+                fieldValidationErrors.imageUrl = value.length >= 10 ? '': ' is less than 10 characters';
+                break;
+            case 'author':
+                fieldValidationErrors.author = value.length >= 4 ? '': ' is less than 4 characters';
+                break;
+            default:
+                break;
+        }
+        this.setState({formErrors: fieldValidationErrors}, this.validateForm);
+    }
+
+    validateForm() {
+        this.setState({formValid:
+            this.state.formErrors.title.length === 0 &&
+            this.state.formErrors.description.length === 0 &&
+            this.state.formErrors.longDesctiption.length === 0 &&
+            this.state.formErrors.imageUrl.length === 0 &&
+            this.state.formErrors.author.length === 0
+            ? true : false});
+    }
+
     handleChange = ev => {
         let fieldName = ev.target.name;
         let fieldValue = ev.target.value;
 
-        this.setState({[fieldName]: fieldValue});
+        this.setState({[fieldName]: fieldValue}, () => { this.validateField(fieldName, fieldValue) });
     }
 
     handleSubmit = ev => {
@@ -69,6 +113,9 @@ export default class NewPlace extends Component {
             <form id="registerForm" onSubmit={this.handleSubmit}>
                 {this.state.operationType === '' ? newHeader : saveHeader}
 
+                <div className="panel panel-default alert-danger error-container">
+                    <FormErrors formErrors={this.state.formErrors} />
+                </div>
                 <div className="form-group">
                     <label htmlFor="title">Title:</label>
                     <input name="title" type="text" className="form-control" id="title" onChange={this.handleChange}  value={this.state.title} />
