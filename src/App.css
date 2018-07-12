@@ -81,3 +81,7 @@ div.map {
 .about {
   margin: 25px;
 }
+
+.error-container {
+  padding: 0 10px;
+}
