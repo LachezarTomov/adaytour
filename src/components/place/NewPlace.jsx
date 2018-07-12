@@ -105,8 +105,8 @@ export default class NewPlace extends Component {
     }
 
     render = () => {
-        const newButton = (<div><input id="btnRegister" value="Sign Up" className="btn btn-primary" type="submit"/></div>);
-        const saveButton = (<div><input id="btnSave" value="Save" className="btn btn-primary" type="submit"/></div>);
+        const newButton = (<div><input disabled={!this.state.formValid} id="btnRegister" value="Sign Up" className="btn btn-primary" type="submit"/></div>);
+        const saveButton = (<div><input disabled={!this.state.formValid} id="btnSave" value="Save" className="btn btn-primary" type="submit"/></div>);
         const newHeader = <h2>New nice place to visit</h2>
         const saveHeader = <h2>Edit a place</h2>
         return (

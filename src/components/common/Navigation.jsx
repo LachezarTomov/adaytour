@@ -22,7 +22,8 @@ export default class Navigation extends Component {
 
     logout = () => {
         observer.trigger(observer.events.loginUser, DEFAULT_STATE);
-
+        observer.trigger(observer.events.notification, {type: 'success', message: 'Logged out successfully'});
+                
         requester.post('user', '_logout', 'kinvey')
             .then(res => sessionStorage.removeItem('authtoken'))
             .catch(res => console.log(res));
