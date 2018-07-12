@@ -39,6 +39,7 @@ export default class LoginForm extends Component {
 
                 observer.trigger(observer.events.notification, {type: 'success', message: 'Logged in successfully!!!'});
                 sessionStorage.setItem('authtoken', res._kmd.authtoken);
+                sessionStorage.removeItem('loggedinasguest')
             })
             .catch(res => {
                 observer.trigger(observer.events.notification, {type: 'error', message: res.responseJSON.description});

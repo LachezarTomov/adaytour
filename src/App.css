@@ -73,3 +73,11 @@ div.map {
 .nav-item {
   margin: auto 0;
 }
+
+.mainTitle {
+  text-align: center;
+}
+
+.about {
+  margin: 25px;
+}

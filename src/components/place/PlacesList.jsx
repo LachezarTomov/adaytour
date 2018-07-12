@@ -9,9 +9,9 @@ export default class PlacesList extends Component {
     constructor(props) {
         super(props);
 
-            this.state = {
-                places: []
-            }
+        this.state = {
+            places: []
+        }
     }
 
     loginAsGuest = () => {
@@ -25,20 +25,17 @@ export default class PlacesList extends Component {
             });
     }
 
-    // userLoggedInData = (dat) => {
-    //     this.setState({...dat});
-    // }
-
     getPlaces = () => requester.get('appdata', 'places?query={}&fields=title,_id,description,imageUrl', 'kinvey')
         .then(res => {
             this.setState({places: res});
         });
 
     componentDidMount = () => {
-        if (sessionStorage.getItem('authtoken')) {
-            this.getPlaces();
-        } else {
+        if (this.props.userId === '' && !sessionStorage.getItem('loggedasguest')) {
             this.loginAsGuest();
+            sessionStorage.setItem('loggedinasguest', true);
+        } else {
+            this.getPlaces();
         }
     }
 
