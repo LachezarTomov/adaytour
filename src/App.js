@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Notification from './components/common/Notification';
 import Logout from './components/users/Logout';
+import UsersList from './components/users/UsersList';
 import RegisterForm from './components/users/RegisterForm';
 import LoginForm from './components/users/LoginForm';
 import Navigation from './components/common/Navigation';
@@ -47,10 +48,11 @@ class App extends Component {
             <Route path='/logout' exact component={Logout} />
             <Route path='/register' exact component={RegisterForm} />
             <Route path='/login' exact component={LoginForm} />
-            <Route path='/place/:id' exact component={Details} />
+            <Route path='/placedetails/:id' exact component={Details} />
             <Route path='/newplace' exact component={NewPlace} />
             <Route path="/newplace/:id" component={NewPlace} />
-            <Route path="/removeplace/:id" component={NewPlace} />
+            <Route path="/users" component={UsersList} />
+            {/* <Route path="/removeplace/:id" component={NewPlace} /> */}
           </Switch>
         </div>
 

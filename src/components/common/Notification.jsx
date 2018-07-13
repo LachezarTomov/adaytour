@@ -34,6 +34,9 @@ export default class Notification extends Component {
         if (this.state.success) {
             notificationId = "infoBox";
             notificationClass = "alert alert-success alert-dismissible fade show";
+            setTimeout(() => {
+                this.hideNotification();
+            }, 3000);
         } if (this.state.error) {
             notificationId = "errorBox";
             notificationClass = "alert alert-danger alert-dismissible fade show";

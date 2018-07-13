@@ -15,6 +15,6 @@ export default {
             element(data);
         }
     },
-    // trigger: (eventName, data) => subscriptions[eventName].forEach(fn => fn(data))
+    // trigger: (eventName, data) => subscriptions[eventName].forEach(fn => fn(data)),
     subscriptions: subscriptions
 }

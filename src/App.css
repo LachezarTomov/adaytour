@@ -39,7 +39,6 @@
 }
 
 .carousel{
-  width:400px;
   margin: 20px 50px;
 }
 .item img{
@@ -84,4 +83,16 @@ div.map {
 
 .error-container {
   padding: 0 10px;
+}
+
+.carousel-inner {
+  height: 300px;
+}
+.carousel-item img {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

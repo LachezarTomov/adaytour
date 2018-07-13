@@ -18,6 +18,7 @@ export default class PlacesList extends Component {
         requester.post('user', 'login', 'basic', {username: "test1", password: "test"})
             .then(res => {
                 sessionStorage.setItem('authtoken', res._kmd.authtoken);
+                this.getPlaces();
             })
             .catch(res => {
                 observer.trigger(observer.events.notification, {type: 'error', message: res.responseJSON.description});

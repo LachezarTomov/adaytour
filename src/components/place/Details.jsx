@@ -29,8 +29,6 @@ export default class Details extends Component {
         super(props);
 
         this.state = DEFAULT_STATE;
-        //observer.subscribe(observer.events.isAdmin, this.userIsAdmin);
-        // observer.subscribe(observer.events.loginUser, this.userLoggedIn);
     }
 
     componentDidMount = () => {
@@ -43,11 +41,6 @@ export default class Details extends Component {
                 observer.trigger(observer.events.notification, {type: 'error', message: res.responseJSON.description})
         )}
     }
-    // userLoggedIn = (username, isAdmin, userId) => this.setState({
-    //     username: username,
-    //     isAdmin: isAdmin,
-    //     userId: userId
-    // });
 
     dateFormat = (isodate) => {
         const date = new Date(isodate);
