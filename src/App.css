@@ -34,6 +34,10 @@
   margin: 20px;
 }
 
+.navbar.bg-light {
+  background: #997300 !important;
+}
+
 .nav .nav-item {
   margin: auto 0;
 }
@@ -67,6 +71,11 @@
   margin: 20px 0;
 }
 
+.place-details .row .place-title a {
+  text-decoration: none;
+  color: saddlebrown;
+}
+
 div.map {
   width: 100%;
 }
@@ -76,11 +85,15 @@ div.map {
 }
 
 .mainTitle {
+  padding-top: 20px;
   text-align: center;
+  font-weight: bold;
+  font-family: Snell Roundhand, cursive;
 }
 
 .about {
-  margin: 25px;
+  margin: 30px;
+  text-align: center;
 }
 
 .error-container {
@@ -109,15 +122,77 @@ div.map {
   margin: 15px;
 }
 
+.place-container {
+  background-color: white;
+}
+
 .place-container a {
   color: black;
 }
 
 .place-container h3 {
   margin-top: 10px;
-  color: green;
+  color: saddlebrown;
 }
 
 .place-container a:hover {
   text-decoration: none;
+  color: black;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: lightyellow !important;
+}
+
+.navbar-nav {
+  color: lightyellow !important;
+}
+
+.navbar-nav a {
+  color: lightyellow !important;
+}
+
+.navbar-nav a:hover {
+  text-decoration: none;
+}
+
+.btn.btn-danger {
+  margin-left: 10px;
+}
+
+body {
+    background-image: url("bg1.jpg");
+    background-size: cover;
+}
+
+.users-list {
+  margin: 40px 15px;
+}
+
+.users-list .row {
+  padding: 10px 0;
+  border-bottom: 1px solid saddlebrown;
+}
+
+.users-list .row .col {
+  margin: auto 0;
+}
+
+.navbar-brand {
+  color: lightyellow !important;
+}
+
+.alert-danger {
+  background-color: transparent !important;
+  color: red !important;
+  font-weight: bold;
+  display: block;
+}
+
+.alert-danger:first-letter {
+  text-transform: uppercase;
+}
+
+.formErrors p:first-letter {
+  text-transform: uppercase;
 }

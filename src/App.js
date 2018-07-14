@@ -52,7 +52,6 @@ class App extends Component {
             <Route path='/newplace' exact component={NewPlace} />
             <Route path="/newplace/:id" component={NewPlace} />
             <Route path="/users" component={UsersList} />
-            {/* <Route path="/removeplace/:id" component={NewPlace} /> */}
           </Switch>
         </div>
 

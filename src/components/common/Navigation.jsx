@@ -23,7 +23,7 @@ export default class Navigation extends Component {
     logout = () => {
         observer.trigger(observer.events.loginUser, DEFAULT_STATE);
         observer.trigger(observer.events.notification, {type: 'success', message: 'Logged out successfully'});
-                
+
         requester.post('user', '_logout', 'kinvey')
             .then(res => sessionStorage.removeItem('authtoken'))
             .catch(res => console.log(res));
@@ -50,6 +50,12 @@ export default class Navigation extends Component {
             </li>
         );
 
+        const usersListNav = (
+            <li className="nav-item">
+                <NavLink className="nav-link" to="/users" >Users list</NavLink>
+            </li>
+        );
+
         const login = (
             <li className="nav-item">
                 <NavLink className="nav-link" to="/login" >Login</NavLink>
@@ -58,7 +64,7 @@ export default class Navigation extends Component {
 
         return (
             <nav className="navbar navbar-expand-md navbar-light bg-light">
-                <a className="navbar-brand" href="/">A Day Tour</a>
+                <a className="navbar-brand" href="/">A Day Trip</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -68,14 +74,13 @@ export default class Navigation extends Component {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/" >Home</NavLink>
                         </li>
-                        
+
                         {this.state.username !== '' ? addNewPlace : ''}
-                       
+                        {this.state.username !== '' && this.state.isAdmin ? usersListNav : ''}
                     </ul>
                     <ul className="navbar-nav">
-                    {this.state.username !== '' ? '' : login}
-                    {this.state.username !== '' ? loggedInSection : signInSection}
-
+                        {this.state.username !== '' ? '' : login}
+                        {this.state.username !== '' ? loggedInSection : signInSection}
                     </ul>
                 </div>
             </nav>

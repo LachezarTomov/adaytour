@@ -43,7 +43,7 @@ export default class RegisterForm extends Component {
 
     validateForm() {
         this.setState({
-            formValid: 
+            formValid:
                 this.state.formErrors.username.length === 0 &&
                 this.state.formErrors.password.length === 0 &&
                 this.state.formErrors.repeatPass.length === 0 &&
@@ -68,9 +68,9 @@ export default class RegisterForm extends Component {
             .then(res => {
                 observer.trigger(observer.events.loginUser, res.username);
                 sessionStorage.setItem('authtoken', res._kmd.authtoken);
-
                 observer.trigger(observer.events.notification, {type: 'success', message: 'The new user is added successfully!!!'});
-                this.props.history.push('/');
+
+                this.props.history.push('/login');
             })
             .catch(res => 
                 observer.trigger(observer.events.notification, {type: 'error', message: res.responseJSON.description})
@@ -98,7 +98,6 @@ export default class RegisterForm extends Component {
                 </div>
                 <input disabled={!this.state.formValid} id="btnRegister" value="Sign Up" className="btn btn-primary" type="submit"/>
             </form>
-            
         )
     }
 }

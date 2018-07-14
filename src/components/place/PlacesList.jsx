@@ -55,21 +55,12 @@ export default class PlacesList extends Component {
 
         return (
             <div className="container">
-                {/* {this.state.places.map((p, index) => {
-                    const showControls = this.props.userId === p._acl.creator;
-
-                    return (
-                        <RowGrid {...p} showControls={showControls} isAdmin={this.props.isAdmin} />
-                    );
-                })} */
-                partArray.map((r, index) => 
-                    <RowGrid key={index} items={r} userId={this.props.userId} isAdmin={this.props.isAdmin} />
-                )
-            }
-
-
+                {
+                    partArray.map((r, index) => 
+                        <RowGrid key={index} items={r} userId={this.props.userId} isAdmin={this.props.isAdmin} />
+                    )
+                }
             </div>
-
         )
     }
 }

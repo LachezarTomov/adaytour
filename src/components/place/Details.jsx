@@ -77,7 +77,6 @@ export default class Details extends Component {
 
         return (
             <div className="container place-details">
-                {/* <h1>{this.props.location.query.isAdmin + " " + this.props.location.query.userId}</h1> */}
                 <div className="row">
                     <h1 className="place-title">
                         <Link to="/">{this.state.title}</Link>
