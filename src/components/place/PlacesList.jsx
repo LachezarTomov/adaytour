@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Place from './Place';
+import RowGrid from './RowGrid';
+
 
 import requester from '../../infrastructure/requester';
 import observer from '../../infrastructure/observer';
@@ -12,6 +13,16 @@ export default class PlacesList extends Component {
         this.state = {
             places: []
         }
+    }
+
+    splitArray = (input, spacing) => {
+        let output = [];
+
+        for (let i = 0; i < input.length; i += spacing) {
+            output[output.length] = input.slice(i, i + spacing);
+        }
+
+        return output;
     }
 
     loginAsGuest = () => {
@@ -40,16 +51,25 @@ export default class PlacesList extends Component {
     }
 
     render = () => {
+        let partArray = this.splitArray(this.state.places, 3);
+
         return (
             <div className="container">
-                <div className="row">
-                    {this.state.places.map(p => {
-                        const showControls = this.props.userId === p._acl.creator;
-                        return <Place key={p._id} {...p} showControls={showControls} isAdmin={this.props.isAdmin} />
-                    }
-                    )}
-                </div>
+                {/* {this.state.places.map((p, index) => {
+                    const showControls = this.props.userId === p._acl.creator;
+
+                    return (
+                        <RowGrid {...p} showControls={showControls} isAdmin={this.props.isAdmin} />
+                    );
+                })} */
+                partArray.map((r, index) => 
+                    <RowGrid key={index} items={r} userId={this.props.userId} isAdmin={this.props.isAdmin} />
+                )
+            }
+
+
             </div>
+
         )
     }
 }
