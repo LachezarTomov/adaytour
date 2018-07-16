@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import RowGrid from './RowGrid';
 
-
 import requester from '../../infrastructure/requester';
 import observer from '../../infrastructure/observer';
-
 
 export default class PlacesList extends Component {
     constructor(props) {

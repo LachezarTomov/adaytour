@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -13,6 +14,7 @@ import Home from './components/Home/Home';
 import NewPlace from './components/place/NewPlace';
 import Details from './components/place/Details';
 import AddPropsToRoute from './components/common/AddPropsToRoute';
+
 import observer from './infrastructure/observer';
 
 class App extends Component {

@@ -9,17 +9,17 @@ const DEFAULT_STATE = {
     longDesctiption: '',
     imageUrl: '',
     author: '',
-    coordinates: {
-        lon: 0,
-        lat: 0
-    },
+    lon: '',
+    lat: '',
     operationType: '',
     formErrors: {
         title: '',
         description: '',
         longDesctiption: '',
         imageUrl: '',
-        author: ''
+        author: '',
+        lon: '',
+        lat: ''
     },
     formValid: false
 };
@@ -57,10 +57,23 @@ export default class NewPlace extends Component {
             case 'author':
                 fieldValidationErrors.author = value.length >= 4 ? '': ' is less than 4 characters';
                 break;
+            case 'lon':
+                fieldValidationErrors.lon = value.length >= 4 && this.isDigits(value) ? '': ' is less than 4 characters or contains letters';
+                break;
+            case 'lat':
+                fieldValidationErrors.lat = value.length >= 4 && this.isDigits(value) ? '': ' is less than 4 characters or contains letters';
+                break;
             default:
                 break;
         }
         this.setState({formErrors: fieldValidationErrors}, this.validateForm);
+    }
+
+    isDigits = (s) => {
+        const rgx = /^[-0-9]*\.?[0-9]*$/;
+        const result = rgx.test(s);
+
+        return result;
     }
 
     validateForm() {
@@ -69,7 +82,9 @@ export default class NewPlace extends Component {
             this.state.formErrors.description.length === 0 &&
             this.state.formErrors.longDesctiption.length === 0 &&
             this.state.formErrors.imageUrl.length === 0 &&
-            this.state.formErrors.author.length === 0
+            this.state.formErrors.author.length === 0 &&
+            this.state.formErrors.lon.length === 0 &&
+            this.state.formErrors.lat.length === 0
             ? true : false});
     }
 
@@ -138,11 +153,11 @@ export default class NewPlace extends Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="lon">Longitude:</label>
-                    <input name="lon" type="text" className="form-control" id="lon" onChange={this.handleChange}  value={this.state.coordinates.lon} />
+                    <input name="lon" type="text" className="form-control" id="lon" onChange={this.handleChange}  value={this.state.lon} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="lat">Latitude:</label>
-                    <input name="lat" type="text" className="form-control" id="lat" onChange={this.handleChange}  value={this.state.coordinates.lat} />
+                    <input name="lat" type="text" className="form-control" id="lat" onChange={this.handleChange}  value={this.state.lat} />
                 </div>
                 {this.state.operationType === 'edit' ? saveButton : newButton  }
             </form>

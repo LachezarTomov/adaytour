@@ -12,10 +12,8 @@ const DEFAULT_STATE = {
     longDesctiption: '',
     imageUrl: '',
     author: '',
-    coordinates: {
-        lon: 0,
-        lat: 0
-    },
+    lon: 0,
+    lat: 0,
     _kmd: {
         ect : 0
     },
@@ -98,8 +96,8 @@ export default class Details extends Component {
                             containerElement={<div style={{ height: `400px` }} />}
                             mapElement={<div style={{ height: `100%` }} />}
                             isMarkerShown={true}
-                            lat={this.state.coordinates.lat}
-                            lng={this.state.coordinates.lon}
+                            lat={this.state.lat}
+                            lng={this.state.lon}
                         />
                     </div>
                 </div>

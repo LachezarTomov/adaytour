@@ -22,7 +22,7 @@ export default class Home extends Component {
                             <img className="d-block w-100" src="https://media.timeout.com/images/105173433/1372/1029/image.jpg" alt="Second slide" />
                         </div>
                         <div className="carousel-item">
-                            <img className="d-block w-100" src="https://www.skibansko.bg/uploaded_files/DSC_0142.JPG" alt="Third slide" />
+                            <img className="d-block w-100" src="https://media.timeout.com/images/105173441/1372/1029/image.jpg" alt="Third slide" />
                         </div>
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
